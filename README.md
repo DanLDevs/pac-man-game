@@ -3,10 +3,32 @@ This project is a replica of the classic Pac-Man Game, originally developed in 1
 It has been implemented in C++ using the [raylib](https://www.raylib.com/) graphical library. <br>
 
 ## 🕹️ **Usage**
-To play this game you can use the `make run` command. <br>
-This rule will generate a `pac-man` file, which is the zipped version of the game. <br>
-You can launch the executable by running the command `./pac-man` <br>
-This project currently supports only **Mac** and **Linux** platforms.
+
+### Mac / Linux
+To play this game, run:
+
+```shell
+make run
+```
+
+This builds the `pac-man` executable and launches it.
+
+### Windows (MSYS2 + MinGW-w64)
+From the project root in PowerShell:
+
+```powershell
+Remove-Item .\pac-man.exe -ErrorAction SilentlyContinue
+mingw32-make
+Copy-Item .\lib\raylib.dll .
+Copy-Item C:\msys64\mingw64\bin\libstdc++-6.dll .
+Copy-Item C:\msys64\mingw64\bin\libgcc_s_seh-1.dll .
+Copy-Item C:\msys64\mingw64\bin\libwinpthread-1.dll .
+.\pac-man.exe
+```
+
+Notes:
+- If you use `mingw32-make clean` on Windows and get `-f was unexpected at this time.`, skip it and use the `Remove-Item` command shown above.
+- If the game does not launch and shows a missing DLL error, ensure the listed DLL files are in the same folder as `pac-man.exe`.
 
 ## 🎥 **Demo**
 
