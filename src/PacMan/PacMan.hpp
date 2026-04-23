@@ -41,6 +41,8 @@ public:
 	void checkScore(Map& map);
 	void update(const Map &map, Key &key);
 	void updateAutopilot(const Map &map, Key &key);
+	int getCurrentNodeId(const Graph &graph) const;
+	bool rebuildAutopilotPath(const Map &map, const Graph &graph, int start_node_id);
 	bool isAlignedToTileCenter() const;
 	std::vector<int> getTargetNodeIds(const Map &map) const;
 	int directionFromTo(const GraphNode *from_node, const GraphNode *to_node) const;
