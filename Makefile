@@ -27,6 +27,7 @@ SRC = \
 	src/utils.cpp \
 	src/pixels.cpp \
 	src/Map/Map.cpp \
+	src/Graph/Graph.cpp \
 	src/Key/Key.cpp \
 	src/PacMan/PacMan.cpp \
 	src/PacMan/Cpu.cpp

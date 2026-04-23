@@ -30,14 +30,28 @@ int Key::getQueueKey() const
 	return _queue_key;
 }
 
+bool Key::isAutopilotEnabled() const
+{
+	return _autopilot_enabled;
+}
+
 void Key::update()
 {
 	int key = GetKeyPressed();
 
 	setKeyPressed(key);
 
-	if (key && !_current_key)
+	if (key == KEY_A)
+	{
+		_autopilot_enabled = !_autopilot_enabled;
+		return ;
+	}
+
+	if (key != KEY_UP && key != KEY_DOWN && key != KEY_LEFT && key != KEY_RIGHT)
+		return ;
+
+	if (!_current_key)
 		setCurrentKey(key);
-	else if (key)
+	else
 		setQueueKey(key);
 }

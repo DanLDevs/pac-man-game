@@ -10,6 +10,7 @@ private:
 	int _current_key = 0;
 	int _key_pressed = 0;
 	int _queue_key = 0;
+	bool _autopilot_enabled = false;
 
 public:
 	void setCurrentKey(int key);
@@ -18,5 +19,6 @@ public:
 	int getCurrentKey() const;
 	int getKeyPressed() const;
 	int getQueueKey() const;
+	bool isAutopilotEnabled() const;
 	void update();
 };
