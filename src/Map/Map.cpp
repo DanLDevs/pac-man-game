@@ -21,6 +21,7 @@ Map::Map(std::string map_path)
 	{
 		while (getline(file, line))
 		{
+			_grid.push_back(line);
 			for (int i = 0; i < line.length(); i++)
 			{
 				if (line[i] == '1')
@@ -41,6 +42,8 @@ Map::Map(std::string map_path)
 
 		file.close();
 	}
+	// Maze topology is static, so we build the graph once and reuse it every frame.
+	_graph.buildFromGrid(_grid);
 
 	_lifes.insert(std::pair<int, int>(20  + BLOCK_SIZE / 2, 504 + BLOCK_SIZE / 2));
 	_lifes.insert(std::pair<int, int>(50  + BLOCK_SIZE / 2, 504 + BLOCK_SIZE / 2));
@@ -66,6 +69,11 @@ std::multimap<int, int>& Map::getTargets()
 	return _targets;
 }
 
+const std::multimap<int, int>& Map::getTargets() const
+{
+	return _targets;
+}
+
 std::multimap<int, int> Map::getCpuList()
 {
 	return _cpu_pos;
@@ -79,6 +87,16 @@ std::map<int, int> Map::getPacmanList()
 std::multimap<int, int>& Map::getLifes()
 {
 	return _lifes;
+}
+
+const std::vector<std::string> &Map::getGrid() const
+{
+	return _grid;
+}
+
+const Graph &Map::getGraph() const
+{
+	return _graph;
 }
 
 std::multimap<int, int>::iterator Map::getLastLifePos()
@@ -126,6 +144,16 @@ Rectangle Map::getRec(float x, float y) const
 int Map::getLifesNumber()
 {
 	return lifes;
+}
+
+int Map::worldToTileRow(int world_y) const
+{
+	return (world_y - (MAP_Y_START + BLOCK_SIZE / 2)) / BLOCK_SIZE;
+}
+
+int Map::worldToTileCol(int world_x) const
+{
+	return (world_x - (MAP_X_START + BLOCK_SIZE / 2)) / BLOCK_SIZE;
 }
 
 void Map::draw()

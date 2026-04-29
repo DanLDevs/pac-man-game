@@ -5,6 +5,7 @@
 #include "../Key/Key.hpp"
 #include <iostream>
 #include <map>
+#include <vector>
 
 class Map;
 
@@ -12,6 +13,9 @@ class PacMan
 {
 private:
 	int _score = 0;
+	bool _was_autopilot_enabled = false;
+	std::vector<int> _autopilot_path;
+	size_t _autopilot_step = 0;
 
 public:
 	float x;
@@ -36,6 +40,13 @@ public:
 	void updateStartPosition(Map &map);
 	void checkScore(Map& map);
 	void update(const Map &map, Key &key);
+	void updateAutopilot(const Map &map, Key &key);
+	int getCurrentNodeId(const Graph &graph) const;
+	bool rebuildAutopilotPath(const Map &map, const Graph &graph, int start_node_id);
+	bool isAlignedToTileCenter() const;
+	std::vector<int> getTargetNodeIds(const Map &map) const;
+	int directionFromTo(const GraphNode *from_node, const GraphNode *to_node) const;
+	void resetAutopilotPath();
 	bool checkBorderCollision(const Map &map, float dx, float dy);
 	void movePrimaryKey(const Map &map, Key &key);
 	bool moveSecondaryKey(const Map &map, Key &key);
