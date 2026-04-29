@@ -1,4 +1,7 @@
 # **Pac-Man Game**
+
+Forked from [maricard18/pac-man-game](https://github.com/maricard18/pac-man-game).
+
 This project is a replica of the classic Pac-Man Game, originally developed in 1980. <br>
 It has been implemented in C++ using the [raylib](https://www.raylib.com/) graphical library. <br>
 
