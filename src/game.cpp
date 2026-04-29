@@ -2,6 +2,8 @@
 
 int RunGame(Map &map, Key &key, PacMan &pacman, Cpu &cpu1, Cpu &cpu2, Cpu &cpu3, Cpu &cpu4)
 {
+	// Orchestration layer: this function controls frame order while individual classes
+	// encapsulate their own game rules (Map state, PacMan logic, and Cpu behavior).
 	ClearBackground(BLACK);
 	map.draw();
 	key.update();

@@ -64,6 +64,8 @@ void Cpu::updateStartPosition(Map &map)
 
 void Cpu::random(const Map &map)
 {
+	// Trade-off: lightweight randomized direction changes are easy to tune and fast each frame,
+	// but they are intentionally less predictable and less optimal than pathfinding ghosts.
 	if (!TimerDone(this->cpu_timer))
 		return ;
 

@@ -91,19 +91,8 @@ void PacMan::checkScore(Map &map)
 
 void PacMan::update(const Map &map, Key &key)
 {
-	if (key.isAutopilotEnabled())
-	{
-		updateAutopilot(map, key);
-		_was_autopilot_enabled = true;
-		return ;
-	}
-
-	if (_was_autopilot_enabled)
-	{
-		resetAutopilotPath();
-		_was_autopilot_enabled = false;
-	}
-
+	// Trade-off: queued turns keep controls responsive at intersections while preserving
+	// collision-safe movement on grid lanes, at the cost of extra input state.
 	if (!moveSecondaryKey(map, key))
 		movePrimaryKey(map, key);
 }

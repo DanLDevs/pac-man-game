@@ -45,6 +45,8 @@ Map::Map(std::string map_path)
 	// Maze topology is static, so we build the graph once and reuse it every frame.
 	_graph.buildFromGrid(_grid);
 
+	// Trade-off: Map centralizes static maze and asset ownership so the frame loop stays small,
+	// but this class becomes the heaviest data owner in the project by design.
 	_lifes.insert(std::pair<int, int>(20  + BLOCK_SIZE / 2, 504 + BLOCK_SIZE / 2));
 	_lifes.insert(std::pair<int, int>(50  + BLOCK_SIZE / 2, 504 + BLOCK_SIZE / 2));
 	_lifes.insert(std::pair<int, int>(80  + BLOCK_SIZE / 2, 504 + BLOCK_SIZE / 2));
